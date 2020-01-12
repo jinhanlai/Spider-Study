@@ -1,0 +1,33 @@
+1.在pycharm里面的terminal里面
+2.输入scrapy startproject module 	 （module为项目名称）
+
+scrapy.cfg: 项目的配置文件。
+module/: 该项目的python模块。之后您将在此加入代码。
+module/items.py: 项目中的item文件。
+module/pipelines.py: 项目中的pipelines文件。
+module/settings.py: 项目的设置文件。
+module/spiders/: 放置spider代码的目录。
+
+
+修改setting文件
+1.ROBOTSTXT_OBEY = true改为false
+2.在DEFAULT_REQUEST_HEADERS里面添加User-Agent
+
+在spiders中创建名称为qsbk_spider的py文件，qiushibaike.com为网页的域名
+scrapy genspider qsbk_spider "qiushibaike.com"
+
+数据处理在pipelines中
+用yield infor 吧信息给调度器，调度器再给pipelines
+在setting中取消ITEM_PIPELINES的注释，后面的数字表示该pipelines的优先级，越小优先级越高
+
+在items中写好定义的数据模型
+
+当使用外部包时出现ModuleNotFoundError:，可以删除该外部抱同级下的__init__.py文件
+
+创建CrawlSpider爬虫
+scrapy startproject wxapp
+scrapy genspider -t crawl [爬虫名字][域名]
+
+
+scrapy shell 网页  可以验证数据是否正确
+
